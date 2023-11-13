@@ -37,14 +37,16 @@ class ViewController: UIViewController {
         let userAnswer = sender.currentTitle
         let actualAnswer = quiz[questionNumber][1]
         
-//        if userAnswer == actualAnswer {
-//
-//        }
+        if userAnswer == actualAnswer {
+            print("Correct")
+        } else {
+            print("Incorrect")
+        }
         
         if questionNumber < quiz.count - 1 {
             questionNumber += 1
         } else {
-            print("Out of range")
+            questionNumber = 0
         }
         updateUI()
     }
