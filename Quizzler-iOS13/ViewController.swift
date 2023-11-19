@@ -37,6 +37,7 @@ class ViewController: UIViewController {
         questionLabel.text = quiz[questionNumber].text
         trueButton.backgroundColor = UIColor.clear
         falseButton.backgroundColor = UIColor.clear
+        progressBar.progress = Float(questionNumber + 1) / Float(quiz.count)
         print("ui updated")
     }
     
@@ -56,7 +57,7 @@ class ViewController: UIViewController {
             questionNumber = 0
         }
         
-        Timer.scheduledTimer(timeInterval: 2, target:self, selector: #selector(updateUI), userInfo: nil, repeats: false)
+        Timer.scheduledTimer(timeInterval: 0.2, target:self, selector: #selector(updateUI), userInfo: nil, repeats: false)
         
     }
 
