@@ -18,7 +18,12 @@ class ViewController: UIViewController {
     let quiz = [
         Question(q: "1+1=2", a: "True"),
         Question(q: "2+2=4", a: "True"),
-        Question(q: "4+4=9", a: "False"),
+        Question(q: "9+6=9", a: "False"),
+        Question(q: "1+4=5", a: "True"),
+        Question(q: "9+2=11", a: "True"),
+        Question(q: "12+45=9", a: "False"),
+        Question(q: "2+7=9", a: "True"),
+        Question(q: "1+6=7", a: "True")
     ]
     
     var questionNumber = 0
@@ -28,8 +33,11 @@ class ViewController: UIViewController {
         updateUI()
     }
     
-    func updateUI() {
+    @objc func updateUI() {
         questionLabel.text = quiz[questionNumber].text
+        trueButton.backgroundColor = UIColor.clear
+        falseButton.backgroundColor = UIColor.clear
+        print("ui updated")
     }
     
     @IBAction func answerButtonPressed(_ sender: UIButton) {
@@ -37,9 +45,9 @@ class ViewController: UIViewController {
         let actualAnswer = quiz[questionNumber].answer
         
         if userAnswer == actualAnswer {
-            print("Correct")
+            sender.backgroundColor = UIColor.green
         } else {
-            print("Incorrect")
+            sender.backgroundColor = UIColor.red
         }
         
         if questionNumber < quiz.count - 1 {
@@ -47,7 +55,9 @@ class ViewController: UIViewController {
         } else {
             questionNumber = 0
         }
-        updateUI()
+        
+        Timer.scheduledTimer(timeInterval: 2, target:self, selector: #selector(updateUI), userInfo: nil, repeats: false)
+        
     }
 
 
