@@ -15,18 +15,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var trueButton: UIButton!
     @IBOutlet weak var falseButton: UIButton!
     
-    let quiz = [
-        Question(q: "1+1=2", a: "True"),
-        Question(q: "2+2=4", a: "True"),
-        Question(q: "9+6=9", a: "False"),
-        Question(q: "1+4=5", a: "True"),
-        Question(q: "9+2=11", a: "True"),
-        Question(q: "12+45=9", a: "False"),
-        Question(q: "2+7=9", a: "True"),
-        Question(q: "1+6=7", a: "True")
-    ]
-    
-    var questionNumber = 0
+    var quizBrain = QuizBrain()
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,10 +31,10 @@ class ViewController: UIViewController {
     }
     
     @IBAction func answerButtonPressed(_ sender: UIButton) {
-        let userAnswer = sender.currentTitle
-        let actualAnswer = quiz[questionNumber].answer
+        let userAnswer = sender.currentTitle!
+        var isCorrect = quizBrain.checkAnswer(userAnswer)
         
-        if userAnswer == actualAnswer {
+        if isCorrect {
             sender.backgroundColor = UIColor.green
         } else {
             sender.backgroundColor = UIColor.red
