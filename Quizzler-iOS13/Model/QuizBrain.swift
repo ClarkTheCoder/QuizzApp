@@ -29,4 +29,26 @@ struct QuizBrain {
             return false
         }
     }
+    
+    func getQuestionText() -> String {
+        let question = quiz[questionNumber].text
+        return question
+    }
+    
+    func getProgress() -> Float {
+        let progress = Float(questionNumber + 1) / Float(quiz.count)
+        return progress
+    }
+    
+    // self refers to instance of structure itself (from within structures decleration)
+    // use immutable because when structs are created, they're done so with the let keywrod (invisible)
+    mutating func nextQuestion() {
+        if questionNumber < quiz.count - 1 {
+            questionNumber += 1
+        } else {
+            questionNumber = 0
+        }
+    }
+    
+    
 }
