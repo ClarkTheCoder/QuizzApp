@@ -20,10 +20,12 @@ struct QuizBrain {
         Question(q: "1+6=7", a: "True")
     ]
     var questionNumber = 0
+    var score = 0
     
     // _ means external param name omitted
-    func checkAnswer(_ userAnswer: String) -> Bool{
+    mutating func checkAnswer(_ userAnswer: String) -> Bool{
         if userAnswer == quiz[questionNumber].answer {
+            score += 1
             return true
         } else {
             return false
@@ -48,6 +50,10 @@ struct QuizBrain {
         } else {
             questionNumber = 0
         }
+    }
+    
+    mutating func getScore() -> Int {
+        return score
     }
     
     
